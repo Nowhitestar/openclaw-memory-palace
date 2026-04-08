@@ -2,26 +2,34 @@
 
 The first public release of an **OpenClaw-enhanced MemPalace**.
 
-This is not “just a wrapper”. It is a practical product layer for OpenClaw that:
-- unifies **conversation memory** + **saved link library** into one semantic system
-- preserves **full original text** as readable markdown files
-- indexes long documents as **overlapping chunks** for better retrieval
-- provides a lightweight **SQLite knowledge graph** with enrichment
+This release is best understood as an **OpenClaw-native memory layer** built on top of MemPalace:
+- users primarily interact with **OpenClaw**
+- `mp` acts as the **integration / operator layer** underneath
+- full source text is preserved as readable markdown
+- long content is indexed as overlapping chunks for retrieval
+- relationships can be enriched into a local SQLite knowledge graph
 
 ## Highlights
 
-- **One-command install** (`install.sh`) + upgrade/uninstall scripts
-- Unified command surface: `mp`
-- `mp save <url>`
-  - writes full original content into OpenClaw `library/`
-  - auto summary / tags / related
-  - chunked indexing into MemPalace / ChromaDB
-- `mp search` (global) and `mp find` (library-only)
-- Knowledge graph:
-  - `mp graph query` / `mp graph stats`
-  - `mp graph enrich` (derive extra triples from saved content)
+- One-command install (`install.sh`)
+- Upgrade / uninstall scripts
+- Unified internal command surface: `mp`
+- OpenClaw link archiving into `library/`
+- Chunked semantic indexing into MemPalace / ChromaDB
+- Graph enrichment from saved content metadata
+- English + Chinese documentation
+- Banner, architecture notes, and user-flow docs
 
-## Main commands
+## End-user mental model
+
+A normal user should mostly:
+- chat with OpenClaw
+- share links
+- ask about past decisions or saved material
+
+OpenClaw should handle the memory layer behind the scenes.
+
+## Operator / debugging commands
 
 ```bash
 mp status
@@ -33,10 +41,10 @@ mp graph query <entity>
 mp list
 ```
 
-## Data locations (local-first)
+## Local-first storage
 
 - Full text archive: `~/.openclaw/workspace-main/library/`
-- Vector index: `~/.mempalace/palace` (ChromaDB)
+- Vector index: `~/.mempalace/palace`
 - Knowledge graph: `~/.mempalace/knowledge_graph.sqlite3`
 
 ## Privacy

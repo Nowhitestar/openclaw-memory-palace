@@ -1,0 +1,17 @@
+<svg width="1280" height="640" viewBox="0 0 1280 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1280" height="640" fill="#0B1020"/>
+  <rect x="56" y="56" width="1168" height="528" rx="24" fill="#11182D" stroke="#2A3A66"/>
+  <text x="90" y="170" fill="#8FB3FF" font-family="Arial, Helvetica, sans-serif" font-size="28">OpenClaw-enhanced MemPalace</text>
+  <text x="90" y="250" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="64" font-weight="700">OpenClaw Memory Palace</text>
+  <text x="90" y="310" fill="#C8D4F0" font-family="Arial, Helvetica, sans-serif" font-size="28">Local-first memory for agents: conversations, saved links, and knowledge graph — unified.</text>
+  <rect x="90" y="370" width="320" height="120" rx="18" fill="#15213D" stroke="#36508E"/>
+  <text x="115" y="420" fill="#A7C5FF" font-family="Arial, Helvetica, sans-serif" font-size="22">Conversation Memory</text>
+  <text x="115" y="456" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="18">OpenClaw memory/ logs</text>
+  <rect x="480" y="370" width="320" height="120" rx="18" fill="#15213D" stroke="#36508E"/>
+  <text x="505" y="420" fill="#A7C5FF" font-family="Arial, Helvetica, sans-serif" font-size="22">Link Library</text>
+  <text x="505" y="456" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="18">full-text archive + summaries + tags</text>
+  <rect x="870" y="370" width="320" height="120" rx="18" fill="#15213D" stroke="#36508E"/>
+  <text x="895" y="420" fill="#A7C5FF" font-family="Arial, Helvetica, sans-serif" font-size="22">Knowledge Graph</text>
+  <text x="895" y="456" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="18">entities, relations, enrichment</text>
+  <text x="90" y="545" fill="#7F8DB5" font-family="Arial, Helvetica, sans-serif" font-size="20">Built on MemPalace + ChromaDB + SQLite, shaped for OpenClaw workflows</text>
+</svg>
