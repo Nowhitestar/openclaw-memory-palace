@@ -1,0 +1,22 @@
+$ mp status
+📦 MemPalace — 108 drawers
+   Palace: /Users/you/.mempalace/palace
+
+  Wings:
+    openclaw: 56 drawers
+    library: 52 drawers
+
+$ mp save https://github.com/milla-jovovich/mempalace --title "MemPalace GitHub"
+📎 URL detected as: article
+   Fetching content...
+✅ Saved to: ~/.openclaw/workspace-main/library/articles/mempalace-github-2026-04-08.md
+✅ Indexed full text to MemPalace (33 chunks)
+🏷️ Tags: article, ai, startup, security, memory, workflow, github.com
+
+$ mp graph stats
+🧠 Knowledge Graph Stats
+  Triples: 28
+  Entities: 31
+  Current facts: 28
+  Expired facts: 0
+  Relationship types: 26

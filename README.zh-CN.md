@@ -1,5 +1,9 @@
 # OpenClaw Memory Palace
 
+[![Release](https://img.shields.io/github/v/release/Nowhitestar/openclaw-memory-palace?style=flat-square)](https://github.com/Nowhitestar/openclaw-memory-palace/releases)
+[![License](https://img.shields.io/github/license/Nowhitestar/openclaw-memory-palace?style=flat-square)](./LICENSE)
+[![OpenClaw](https://img.shields.io/badge/OpenClaw-memory%20upgrade-blue?style=flat-square)](https://github.com/Nowhitestar/openclaw-memory-palace)
+
 把 OpenClaw 从“会翻笔记的助手”升级成“有持续记忆的搭档”。
 
 **OpenClaw Memory Palace** 是我们这次整理出来的可安装记忆系统，核心基于：
@@ -7,6 +11,19 @@
 - ChromaDB 语义检索
 - SQLite 知识图谱
 - 面向 OpenClaw 的 `mp` 包装命令
+
+## 适合谁 / 不适合谁
+
+**适合：**
+- 想让 OpenClaw 具备更强语义记忆的人
+- 想把对话记忆和链接资料统一起来的人
+- 想要本地优先、可控、可扩展记忆系统的人
+- 想在不依赖云服务的前提下获得知识图谱能力的人
+
+**不太适合：**
+- 想要纯 SaaS 托管方案的人
+- 想要完全图形化、零命令行体验的人
+- 不打算本地存储数据的人
 
 ## 为什么要做它
 
@@ -32,6 +49,25 @@ OpenClaw 本身已经有文件、日志、memory notes，但常见问题是：
 - 有知识图谱能力（`mp graph query` / `mp graph enrich`）
 - `mp save` 支持原文保存 + chunk 索引
 - 自动生成摘要 / tags / related
+
+## Demo
+
+```bash
+$ mp status
+📦 MemPalace — 108 drawers
+
+$ mp save https://github.com/milla-jovovich/mempalace --title "MemPalace GitHub"
+✅ Saved to: ~/.openclaw/workspace-main/library/articles/mempalace-github-2026-04-08.md
+✅ Indexed full text to MemPalace (33 chunks)
+🏷️ Tags: article, ai, startup, security, memory, workflow, github.com
+
+$ mp graph stats
+🧠 Knowledge Graph Stats
+  Triples: 28
+  Entities: 31
+```
+
+完整示例见：[`examples/demo-output.txt`](examples/demo-output.txt)
 
 ## 你能做什么
 
@@ -98,7 +134,9 @@ uninstall.sh           # 卸载脚本
 README.md              # English 文档
 README.zh-CN.md        # 中文文档
 docs/FAQ.md            # 常见问题
+docs/RELEASE_NOTES_v0.1.0.md
 examples/quickstart.md # 使用示例
+examples/demo-output.txt
 ```
 
 ## 隐私说明
