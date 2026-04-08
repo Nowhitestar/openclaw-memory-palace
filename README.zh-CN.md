@@ -1,171 +1,170 @@
+<div align="center">
+
 # OpenClaw Memory Palace
+
+### OpenClaw 增强版 MemPalace：对话记忆 + 链接知识库 + 知识图谱，统一成一个本地优先的系统。
 
 [![Release](https://img.shields.io/github/v/release/Nowhitestar/openclaw-memory-palace?style=flat-square)](https://github.com/Nowhitestar/openclaw-memory-palace/releases)
 [![License](https://img.shields.io/github/license/Nowhitestar/openclaw-memory-palace?style=flat-square)](./LICENSE)
-[![OpenClaw](https://img.shields.io/badge/OpenClaw-memory%20upgrade-blue?style=flat-square)](https://github.com/Nowhitestar/openclaw-memory-palace)
+[![OpenClaw](https://img.shields.io/badge/OpenClaw-%E9%9B%86%E6%88%90-blue?style=flat-square)](https://github.com/openclaw/openclaw)
+[![MemPalace](https://img.shields.io/badge/%E5%9F%BA%E4%BA%8E-MemPalace-black?style=flat-square)](https://github.com/milla-jovovich/mempalace)
 
-把 OpenClaw 从“会翻笔记的助手”升级成“有持续记忆的搭档”。
+<br>
 
-**OpenClaw Memory Palace** 是我们这次整理出来的可安装记忆系统，核心基于：
-- [MemPalace](https://github.com/milla-jovovich/mempalace)
-- ChromaDB 语义检索
-- SQLite 知识图谱
-- 面向 OpenClaw 的 `mp` 包装命令
+[快速开始](#%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B) · [你能得到什么](#%E4%BD%A0%E8%83%BD%E5%BE%97%E5%88%B0%E4%BB%80%E4%B9%88) · [日常怎么用](#%E6%97%A5%E5%B8%B8%E6%80%8E%E4%B9%88%E7%94%A8) · [架构](#%E6%9E%B6%E6%9E%84) · [FAQ](docs/FAQ.md)
 
-## 适合谁 / 不适合谁
+</div>
 
-**适合：**
-- 想让 OpenClaw 具备更强语义记忆的人
-- 想把对话记忆和链接资料统一起来的人
-- 想要本地优先、可控、可扩展记忆系统的人
-- 想在不依赖云服务的前提下获得知识图谱能力的人
+---
 
-**不太适合：**
-- 想要纯 SaaS 托管方案的人
-- 想要完全图形化、零命令行体验的人
-- 不打算本地存储数据的人
+很多 agent 对话里才有真正的决策、取舍、debug 过程。
+但大多数系统要么：
+- 只把它们堆成扁平 markdown，难以语义导航；
+- 要么把“保存链接”做成另一套系统，和对话记忆割裂。
 
-## 为什么要做它
+**OpenClaw Memory Palace** 是一个“面向 OpenClaw 的 MemPalace 增强层”：
+- `mp save` 把链接**原文**归档到 OpenClaw `library/`
+- 同时把内容按 chunk 索引进 MemPalace / ChromaDB，用于语义检索
+- SQLite 知识图谱 + `mp graph enrich`，把资料元信息转成实体关系
+- 统一命令面：`mp`
 
-OpenClaw 本身已经有文件、日志、memory notes，但常见问题是：
-- 结构偏扁平
-- 信息散落在多个位置
-- 语义搜索不够顺手
-- 保存的网页资料和对话记忆是分开的
+本仓库只提供可复用系统：**不会上传你的任何私人记忆数据**。
 
-这个项目就是把这些能力统一成一个本地优先的记忆系统。
 
-## 改造前 vs 改造后
-
-### 改造前
-- 扁平 markdown 记忆
-- Link Library 是独立系统
-- 检索更像关键词匹配 / 翻文件
-- 实体关系记忆较弱
-
-### 改造后
-- 对话记忆 + 链接资料统一搜索
-- `library` 成为 MemPalace 的一个 wing
-- 有知识图谱能力（`mp graph query` / `mp graph enrich`）
-- `mp save` 支持原文保存 + chunk 索引
-- 自动生成摘要 / tags / related
-
-## Demo
-
-```bash
-$ mp status
-📦 MemPalace — 108 drawers
-
-$ mp save https://github.com/milla-jovovich/mempalace --title "MemPalace GitHub"
-✅ Saved to: ~/.openclaw/workspace-main/library/articles/mempalace-github-2026-04-08.md
-✅ Indexed full text to MemPalace (33 chunks)
-🏷️ Tags: article, ai, startup, security, memory, workflow, github.com
-
-$ mp graph stats
-🧠 Knowledge Graph Stats
-  Triples: 28
-  Entities: 31
-```
-
-完整示例见：[`examples/demo-output.txt`](examples/demo-output.txt)
-
-## 你能做什么
-
-- `mp status` — 查看当前记忆状态
-- `mp search` — 全局语义搜索
-- `mp find` — 只搜索已保存链接
-- `mp save <url>` — 保存链接原文并索引进 MemPalace
-- `mp graph query <entity>` — 查询知识图谱
-- `mp graph enrich` — 从资料里扩充知识图谱
-- `mp list` — 浏览已保存资料
-
-## 安装
+## 快速开始
 
 ```bash
 git clone https://github.com/Nowhitestar/openclaw-memory-palace.git
 cd openclaw-memory-palace
 bash install.sh
+
+mp status
+mp graph enrich
+mp save https://github.com/milla-jovovich/mempalace --title "MemPalace GitHub"
+mp find "记忆系统"
+mp search "之前为什么这么决定"
 ```
 
 如果执行后找不到 `mp`，把下面这行加进 shell 配置：
 
 ```bash
-export PATH="$HOME/.local/bin:$HOME/Library/Python/3.9/bin:$PATH"
+export PATH="$HOME/.local/bin:$(python3 -m site --user-base)/bin:$PATH"
 ```
 
-## 快速开始
 
+## 你能得到什么
+
+### 1) 一个统一的记忆入口
+- OpenClaw 对话记忆（来自 `memory/`）
+- 链接知识库（来自 `library/`，不再是独立系统）
+- 知识图谱（实体关系可查询）
+
+统一通过：
+- `mp search …`（全局）
+- `mp find …`（只搜 library）
+- `mp graph query …`
+
+### 2) 原文可读、可编辑
+`mp save` 会写出 markdown 文件，包含：
+- 完整原文
+- 自动摘要
+- tags
+- related（语义相关条目）
+
+### 3) 语义检索更稳
+同一份内容会被切成多个 chunk 索引进 MemPalace，长文检索更好用。
+
+
+## 日常怎么用
+
+你不需要“维护数据库”。你照常工作，记忆系统跟着走。
+
+### 保存链接（Link Library 变成 MemPalace 的一个 wing）
 ```bash
-mp status
+mp save https://example.com/article
+mp save https://x.com/user/status/123
+mp save https://mp.weixin.qq.com/s/xxx
+```
+
+### 搜索
+```bash
+mp search "auth 决策"
+mp find "agent workflow"
+```
+
+### 知识图谱
+```bash
 mp graph enrich
-mp save https://github.com/milla-jovovich/mempalace
-mp find "记忆系统"
-mp search "之前为什么这么决定"
+mp graph stats
+mp graph query OpenClaw
 ```
 
-更多示例见：[`examples/quickstart.md`](examples/quickstart.md)
-
-## 存储方式
-
-### 1. 原文存档
-`mp save` 会把完整原文保存到：
-
-```text
-~/.openclaw/workspace-main/library/
+### 浏览
+```bash
+mp list
+mp list articles
+mp list tweets
 ```
 
-### 2. 语义索引
-同一份内容会被切 chunk 后写入 MemPalace / ChromaDB，用于召回和搜索。
 
-### 3. 知识图谱
-实体和关系保存在：
+## 架构
 
-```text
-~/.mempalace/knowledge_graph.sqlite3
-```
+**原文（source of truth）：**
+- `~/.openclaw/workspace-main/library/`
+
+**向量索引（语义检索）：**
+- `~/.mempalace/palace`（ChromaDB）
+- 内容按 overlap chunk 方式入库
+
+**知识图谱：**
+- `~/.mempalace/knowledge_graph.sqlite3`
+
+### 相比原生 MemPalace，这个项目多了什么？
+
+MemPalace 是引擎。
+这个仓库是面向 OpenClaw 的“产品层”：
+
+- ✅ 链接保存工作流（`mp save`）：写 OpenClaw `library/` + 分块索引
+- ✅ OpenClaw 友好的浏览/检索命令（`mp find` / `mp list`）
+- ✅ 知识图谱增强（`mp graph enrich` 从 library 元信息生成 triples）
+- ✅ 本地优先 + 人类可读
+
 
 ## 仓库内容
 
 ```text
-bin/mp.py              # OpenClaw 记忆命令封装
-install.sh             # 一键安装脚本
-upgrade.sh             # 升级脚本
-uninstall.sh           # 卸载脚本
-README.md              # English 文档
-README.zh-CN.md        # 中文文档
-docs/FAQ.md            # 常见问题
+bin/mp.py
+install.sh
+upgrade.sh
+uninstall.sh
+README.md
+README.zh-CN.md
+docs/FAQ.md
 docs/RELEASE_NOTES_v0.1.0.md
-examples/quickstart.md # 使用示例
+examples/quickstart.md
 examples/demo-output.txt
 ```
 
+
 ## 隐私说明
 
-- 这个仓库**不会**上传你的私人记忆文件。
-- 上传的是可复用的系统和安装脚本。
-- 你的实际记忆、资料、知识图谱仍然保留在本地。
+- 本仓库不会上传你的私人记忆
+- 只发布可复用脚本和代码
+- 你的数据始终留在本地
 
-## 升级
+
+## 升级 / 卸载
 
 ```bash
 bash upgrade.sh
-```
-
-## 卸载
-
-```bash
 bash uninstall.sh
 ```
 
-注意：卸载只移除包装层，不会删除你的本地记忆数据。
-
-## FAQ
-
-见 [`docs/FAQ.md`](docs/FAQ.md)
 
 ## 致谢
 
-底层能力基于 Milla Jovovich / Ben Sigman 的 MemPalace。
+底层能力基于 MemPalace（Milla Jovovich & Ben Sigman）。
+
 
 ## License
 

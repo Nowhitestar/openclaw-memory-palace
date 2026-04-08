@@ -4,7 +4,7 @@ set -euo pipefail
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 WORKSPACE_DIR="${OPENCLAW_WORKSPACE_DIR:-$HOME/.openclaw/workspace-main}"
 MP_BIN_DIR="${OPENCLAW_MP_BIN_DIR:-$HOME/.local/bin}"
-PY_SITE_BIN="$HOME/Library/Python/3.9/bin"
+PY_SITE_BIN="$(python3 -m site --user-base)/bin"
 
 mkdir -p "$WORKSPACE_DIR/scripts" "$WORKSPACE_DIR/.learnings" "$MP_BIN_DIR" "$HOME/.mempalace/palace"
 
