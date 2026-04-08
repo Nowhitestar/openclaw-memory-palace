@@ -6,6 +6,8 @@
 
 ### OpenClaw 增强版 MemPalace：对话记忆 + 链接知识库 + 知识图谱，统一成一个本地优先的系统。
 
+[🇺🇸 English](README.md) · 简体中文
+
 [![Release](https://img.shields.io/github/v/release/Nowhitestar/openclaw-memory-palace?style=flat-square)](https://github.com/Nowhitestar/openclaw-memory-palace/releases)
 [![License](https://img.shields.io/github/license/Nowhitestar/openclaw-memory-palace?style=flat-square)](./LICENSE)
 [![OpenClaw](https://img.shields.io/badge/OpenClaw-%E9%9B%86%E6%88%90-blue?style=flat-square)](https://github.com/openclaw/openclaw)
@@ -19,27 +21,27 @@
 
 ---
 
-真正有价值的 agent 工作流，都会持续产生记忆：
+每一个有价值的 agent 工作流，都在持续产生记忆：
 - 为什么当时这么决策
 - 哪篇链接后来真的有用
 - 某次 debug 里排除了什么路径
 - 某个项目 / 人 / 主题后来发生了什么变化
 
-但大多数系统里，这些记忆是割裂的：
+但在大多数系统里，这些记忆是割裂的：
 - 对话日志在一处
 - 保存的链接在另一处
 - 长文检索弱
 - 实体关系没有被显式组织起来
 
-**OpenClaw Memory Palace** 做的，是把 MemPalace 变成一个 **OpenClaw 原生记忆层**。
-它统一承接：
+**OpenClaw Memory Palace** 把 MemPalace 变成了一个 **OpenClaw 原生记忆层**。
+它为 OpenClaw 提供了一个统一的本地优先系统，用于：
 - 对话记忆
 - 链接存档 / 阅读资料库
 - 长文本语义检索
 - 轻量知识图谱增强
 
 最重要的一点：**普通用户主要应该和 OpenClaw 交互，而不是直接操作 `mp`。**
-`mp` 更像底层集成层。
+`mp` 更像是底层的集成层。
 
 
 ## 快速开始

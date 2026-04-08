@@ -6,6 +6,8 @@
 
 ### An OpenClaw-enhanced MemPalace: unified conversation memory + link library + knowledge graph — local-first.
 
+[English](README.md) · [🇨🇳 中文](README.zh-CN.md)
+
 [![Release](https://img.shields.io/github/v/release/Nowhitestar/openclaw-memory-palace?style=flat-square)](https://github.com/Nowhitestar/openclaw-memory-palace/releases)
 [![License](https://img.shields.io/github/license/Nowhitestar/openclaw-memory-palace?style=flat-square)](./LICENSE)
 [![OpenClaw](https://img.shields.io/badge/OpenClaw-integration-blue?style=flat-square)](https://github.com/openclaw/openclaw)
