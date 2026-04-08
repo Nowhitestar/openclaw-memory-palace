@@ -33,6 +33,8 @@ This repo ships the reusable system only — **your actual memory data stays loc
 
 ## Quick Start
 
+### Option A (recommended): clone & run
+
 ```bash
 git clone https://github.com/Nowhitestar/openclaw-memory-palace.git
 cd openclaw-memory-palace
@@ -43,6 +45,12 @@ mp graph enrich
 mp save https://github.com/milla-jovovich/mempalace --title "MemPalace GitHub"
 mp find "memory system"
 mp search "why did we choose X"
+```
+
+### Option B: one-liner (review before you run)
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/Nowhitestar/openclaw-memory-palace/main/install.sh | bash
 ```
 
 If `mp` is not found afterwards, add this to your shell profile:

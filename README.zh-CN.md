@@ -33,6 +33,8 @@
 
 ## 快速开始
 
+### 方式 A（推荐）：clone 安装
+
 ```bash
 git clone https://github.com/Nowhitestar/openclaw-memory-palace.git
 cd openclaw-memory-palace
@@ -43,6 +45,12 @@ mp graph enrich
 mp save https://github.com/milla-jovovich/mempalace --title "MemPalace GitHub"
 mp find "记忆系统"
 mp search "之前为什么这么决定"
+```
+
+### 方式 B：一行命令（建议先看脚本再跑）
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/Nowhitestar/openclaw-memory-palace/main/install.sh | bash
 ```
 
 如果执行后找不到 `mp`，把下面这行加进 shell 配置：
