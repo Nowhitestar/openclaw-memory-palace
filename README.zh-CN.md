@@ -1,34 +1,46 @@
 # OpenClaw Memory Palace
 
-给 OpenClaw 用的一键记忆升级包。
+把 OpenClaw 从“会翻笔记的助手”升级成“有持续记忆的搭档”。
 
-这个项目把我们这次改造出来的记忆系统整理成了可安装版本，核心基于：
+**OpenClaw Memory Palace** 是我们这次整理出来的可安装记忆系统，核心基于：
 - [MemPalace](https://github.com/milla-jovovich/mempalace)
 - ChromaDB 语义检索
 - SQLite 知识图谱
 - 面向 OpenClaw 的 `mp` 包装命令
 
-## 它解决了什么问题
+## 为什么要做它
 
-改造前：
-- 记忆主要是扁平 markdown
+OpenClaw 本身已经有文件、日志、memory notes，但常见问题是：
+- 结构偏扁平
+- 信息散落在多个位置
+- 语义搜索不够顺手
+- 保存的网页资料和对话记忆是分开的
+
+这个项目就是把这些能力统一成一个本地优先的记忆系统。
+
+## 改造前 vs 改造后
+
+### 改造前
+- 扁平 markdown 记忆
 - Link Library 是独立系统
 - 检索更像关键词匹配 / 翻文件
+- 实体关系记忆较弱
 
-改造后：
-- 对话记忆 + 链接资料统一进一个系统
+### 改造后
+- 对话记忆 + 链接资料统一搜索
 - `library` 成为 MemPalace 的一个 wing
-- 有知识图谱能力
-- `mp save` 会保存原文、分块索引、生成摘要 / tags / related
+- 有知识图谱能力（`mp graph query` / `mp graph enrich`）
+- `mp save` 支持原文保存 + chunk 索引
+- 自动生成摘要 / tags / related
 
-## 主要能力
+## 你能做什么
 
 - `mp status` — 查看当前记忆状态
 - `mp search` — 全局语义搜索
 - `mp find` — 只搜索已保存链接
 - `mp save <url>` — 保存链接原文并索引进 MemPalace
 - `mp graph query <entity>` — 查询知识图谱
-- `mp graph enrich` — 从资料中扩充知识图谱
+- `mp graph enrich` — 从资料里扩充知识图谱
 - `mp list` — 浏览已保存资料
 
 ## 安装
@@ -39,7 +51,7 @@ cd openclaw-memory-palace
 bash install.sh
 ```
 
-如果命令找不到，再把下面这行加进 shell 配置：
+如果执行后找不到 `mp`，把下面这行加进 shell 配置：
 
 ```bash
 export PATH="$HOME/.local/bin:$HOME/Library/Python/3.9/bin:$PATH"
@@ -55,20 +67,22 @@ mp find "记忆系统"
 mp search "之前为什么这么决定"
 ```
 
+更多示例见：[`examples/quickstart.md`](examples/quickstart.md)
+
 ## 存储方式
 
-### 原文存档
+### 1. 原文存档
 `mp save` 会把完整原文保存到：
 
 ```text
 ~/.openclaw/workspace-main/library/
 ```
 
-### 语义索引
-同一份内容会被切 chunk 后写入 MemPalace / ChromaDB，用来做召回检索。
+### 2. 语义索引
+同一份内容会被切 chunk 后写入 MemPalace / ChromaDB，用于召回和搜索。
 
-### 知识图谱
-实体和关系会存到：
+### 3. 知识图谱
+实体和关系保存在：
 
 ```text
 ~/.mempalace/knowledge_graph.sqlite3
@@ -77,17 +91,39 @@ mp search "之前为什么这么决定"
 ## 仓库内容
 
 ```text
-bin/mp.py          # OpenClaw 记忆命令封装
-install.sh         # 一键安装脚本
-README.md          # English 说明
-README.zh-CN.md    # 中文说明
+bin/mp.py              # OpenClaw 记忆命令封装
+install.sh             # 一键安装脚本
+upgrade.sh             # 升级脚本
+uninstall.sh           # 卸载脚本
+README.md              # English 文档
+README.zh-CN.md        # 中文文档
+docs/FAQ.md            # 常见问题
+examples/quickstart.md # 使用示例
 ```
 
-## 说明
+## 隐私说明
 
 - 这个仓库**不会**上传你的私人记忆文件。
-- 上传的只是可复用的系统和安装脚本。
+- 上传的是可复用的系统和安装脚本。
 - 你的实际记忆、资料、知识图谱仍然保留在本地。
+
+## 升级
+
+```bash
+bash upgrade.sh
+```
+
+## 卸载
+
+```bash
+bash uninstall.sh
+```
+
+注意：卸载只移除包装层，不会删除你的本地记忆数据。
+
+## FAQ
+
+见 [`docs/FAQ.md`](docs/FAQ.md)
 
 ## 致谢
 
