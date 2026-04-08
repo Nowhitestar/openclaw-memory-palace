@@ -1,29 +1,45 @@
-# v0.1.0
+# OpenClaw Memory Palace — v0.1.0
 
-Initial public release of OpenClaw Memory Palace.
+The first public release of an **OpenClaw-enhanced MemPalace**.
+
+This is not “just a wrapper”. It is a practical product layer for OpenClaw that:
+- unifies **conversation memory** + **saved link library** into one semantic system
+- preserves **full original text** as readable markdown files
+- indexes long documents as **overlapping chunks** for better retrieval
+- provides a lightweight **SQLite knowledge graph** with enrichment
 
 ## Highlights
 
-- One-command install for the OpenClaw memory upgrade
-- `mp` wrapper for memory search, link saving, and graph querying
-- Full-text link archiving into `library/`
-- Chunked semantic indexing into MemPalace / ChromaDB
-- SQLite knowledge graph support
-- `mp graph enrich` to derive extra triples from saved content
-- English and Chinese documentation
-- upgrade / uninstall scripts
+- **One-command install** (`install.sh`) + upgrade/uninstall scripts
+- Unified command surface: `mp`
+- `mp save <url>`
+  - writes full original content into OpenClaw `library/`
+  - auto summary / tags / related
+  - chunked indexing into MemPalace / ChromaDB
+- `mp search` (global) and `mp find` (library-only)
+- Knowledge graph:
+  - `mp graph query` / `mp graph stats`
+  - `mp graph enrich` (derive extra triples from saved content)
 
 ## Main commands
 
-- `mp status`
-- `mp search`
-- `mp find`
-- `mp save <url>`
-- `mp graph query <entity>`
-- `mp graph enrich`
-- `mp list`
+```bash
+mp status
+mp search "why did we choose X"
+mp find "agent workflow"
+mp save <url>
+mp graph enrich
+mp graph query <entity>
+mp list
+```
 
-## Notes
+## Data locations (local-first)
 
-This release ships the reusable memory system only.
-It does not contain any personal memory data.
+- Full text archive: `~/.openclaw/workspace-main/library/`
+- Vector index: `~/.mempalace/palace` (ChromaDB)
+- Knowledge graph: `~/.mempalace/knowledge_graph.sqlite3`
+
+## Privacy
+
+This release ships reusable scripts and code only.
+Your private memory data stays on your machine.
